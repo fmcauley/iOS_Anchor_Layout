@@ -22,6 +22,14 @@ class IconControl: UIView {
         return label
     }()
     
+    private var spacingConstraint: NSLayoutConstraint!
+    
+    var spacing : CGFloat = 20.0 {
+        didSet {
+            spacingConstraint?.constant = spacing
+        }
+    }
+    
     // below are the two initializers that are always needed for UIView
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,7 +61,6 @@ extension IconControl {
             label.text = newText
         }
     }
-    
 }
 
 extension IconControl {
@@ -63,7 +70,7 @@ extension IconControl {
         addSubview(imageView)
         
         
-        let spacingConstraint = label.leftAnchor.constraintEqualToAnchor(imageView.rightAnchor, constant: 20)
+        spacingConstraint = label.leftAnchor.constraintEqualToAnchor(imageView.rightAnchor, constant: spacing)
         
         NSLayoutConstraint.activateConstraints([
             imageView.leadingAnchor.constraintEqualToAnchor(layoutMarginsGuide.leadingAnchor),

@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     
     iconControl.text = "My Icon Control"
     iconControl.image = UIImage(named: "cocktail")
-    // no api needed for background color this is a propery that already exists
     iconControl.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+    iconControl.spacing = 8.0
     
     view.addSubview(iconControl)
     
