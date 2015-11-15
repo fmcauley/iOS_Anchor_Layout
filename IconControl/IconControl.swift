@@ -5,7 +5,9 @@
 //  Created by Frank McAuley on 11/11/15.
 //
 
+
 import UIKit
+@IBDesignable
 
 class IconControl: UIView {
     
@@ -14,7 +16,7 @@ class IconControl: UIView {
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
-
+    
     private var label : UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +26,7 @@ class IconControl: UIView {
     
     private var spacingConstraint: NSLayoutConstraint!
     
+    @IBInspectable
     var spacing : CGFloat = 20.0 {
         didSet {
             spacingConstraint?.constant = spacing
@@ -44,6 +47,7 @@ class IconControl: UIView {
 
 // API for control
 extension IconControl {
+    @IBInspectable
     var image : UIImage? {
         get {
             return imageView.image
@@ -52,7 +56,7 @@ extension IconControl {
             imageView.image = newImage?.imageWithRenderingMode(.AlwaysTemplate)
         }
     }
-    
+    @IBInspectable
     var text: String? {
         get {
             return label.text
@@ -68,6 +72,8 @@ extension IconControl {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         addSubview(imageView)
+        
+        label.textColor = tintColor
         
         
         spacingConstraint = label.leftAnchor.constraintEqualToAnchor(imageView.rightAnchor, constant: spacing)
@@ -87,5 +93,12 @@ extension IconControl {
         setContentHuggingPriority(UILayoutPriorityDefaultHigh, forAxis: .Horizontal)
         
         layer.cornerRadius = 10
+    }
+}
+
+extension IconControl {
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        label.textColor = tintColor
     }
 }
