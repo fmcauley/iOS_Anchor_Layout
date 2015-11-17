@@ -9,6 +9,9 @@ class ViewController: UIViewController {
         return IconControl(frame: .zero)
     }()
   
+    @IBAction func iconControlTapped(sender: AnyObject) {
+        print("Is there anybody out there?")
+    }
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.

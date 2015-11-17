@@ -9,7 +9,10 @@
 import UIKit
 @IBDesignable
 
-class IconControl: UIView {
+// Subclassing UIControl so that the class can access the Target Action feature
+// UIControl is a subclass of UIView
+
+class IconControl: UIControl {
     
     private lazy var imageView : UIImageView = {
         let iv = UIImageView()
@@ -97,8 +100,20 @@ extension IconControl {
 }
 
 extension IconControl {
+    private func addTapGestureRecognizer(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleIcontapped:")
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func handleIcontapped(sender: UITapGestureRecognizer) {
+        sendActionsForControlEvents(.TouchUpInside)
+    }
+}
+
+extension IconControl {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         label.textColor = tintColor
     }
 }
+
